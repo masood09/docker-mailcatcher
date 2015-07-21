@@ -1,0 +1,1 @@
+Docker container for MailCatcher (http://mailcatcher.me/). The container exposes port 1025 and 1080.
