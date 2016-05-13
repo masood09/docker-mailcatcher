@@ -1,12 +1,13 @@
 # Use phusion/baseimage as base image.
-FROM phusion/baseimage:0.9.17
+FROM phusion/baseimage:0.9.18
 
-# Set some metadata
-LABEL version="0.6.1"
-LABEL description="Docker container for MailCatcher (http://mailcatcher.me/). The container exposes port 1025 and 1080."
+MAINTAINER Masood Ahmed masood.ahmed09@gmail.com
 
 # Set correct environment variables.
 ENV HOME /root
+
+# Set noninteractive mode for apt-get
+ENV DEBIAN_FRONTEND noninteractive
 
 # Regenerate SSH host keys. baseimage-docker does not contain any, so we
 # have to do that yourself.
@@ -23,7 +24,7 @@ RUN export LANG=en_US.UTF-8
 RUN apt-get update
 RUN apt-get -y --force-yes upgrade
 
-# Install Mailcatcher (0.6.1)
+# Install Mailcatcher (0.6.4)
 RUN apt-get -y --force-yes install build-essential libsqlite3-dev ruby-dev
 RUN gem install --no-rdoc --no-ri mailcatcher
 
